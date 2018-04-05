@@ -3,13 +3,13 @@
 class Algolia_Algoliasearch_Helper_IndexChecker extends Mage_Core_Helper_Abstract
 {
     /** @var Algolia_Algoliasearch_Helper_Config */
-    private $configHelper;
-    
+    protected $configHelper;
+
     /** @var Varien_Db_Adapter_Interface */
-    private $dbConnection;
-    
+    protected $dbConnection;
+
     /** @var array */
-    private $pendingProductIds;
+    protected $pendingProductIds;
 
     public function __construct()
     {
@@ -50,7 +50,7 @@ class Algolia_Algoliasearch_Helper_IndexChecker extends Mage_Core_Helper_Abstrac
         }
     }
 
-    private function getPendingProductIds($storeId)
+    protected function getPendingProductIds($storeId)
     {
         if (isset($this->pendingProductIds) === false) {
             $priceIndexes = $this->pendingPriceIndex($storeId);
@@ -69,7 +69,7 @@ class Algolia_Algoliasearch_Helper_IndexChecker extends Mage_Core_Helper_Abstrac
      * @param $storeId
      * @return array
      */
-    private function pendingPriceIndex($storeId)
+    protected function pendingPriceIndex($storeId)
     {
         $returnArray = array();
 
@@ -87,7 +87,7 @@ class Algolia_Algoliasearch_Helper_IndexChecker extends Mage_Core_Helper_Abstrac
      * @param $storeId
      * @return array
      */
-    private function pendingStockIndex($storeId)
+    protected function pendingStockIndex($storeId)
     {
         $returnArray = array();
 
@@ -108,7 +108,7 @@ class Algolia_Algoliasearch_Helper_IndexChecker extends Mage_Core_Helper_Abstrac
      *
      * @return mixed - array of ID's
      */
-    private function findProductIdsPending($changeLogTable, $idColumn, $maxVersion)
+    protected function findProductIdsPending($changeLogTable, $idColumn, $maxVersion)
     {
         $connection = $this->getConnection();
         $select = $connection->select()
@@ -126,7 +126,7 @@ class Algolia_Algoliasearch_Helper_IndexChecker extends Mage_Core_Helper_Abstrac
      * @param $changeLogTable
      * @return mixed
      */
-    private function findLatestVersion($changeLogTable)
+    protected function findLatestVersion($changeLogTable)
     {
         $connection = $this->getConnection();
         $select = $connection->select()
@@ -136,7 +136,7 @@ class Algolia_Algoliasearch_Helper_IndexChecker extends Mage_Core_Helper_Abstrac
         return $connection->fetchOne($select);
     }
 
-    private function getConnection()
+    protected function getConnection()
     {
         if (isset($this->dbConnection) === false) {
             /** @var Mage_Core_Model_Resource $coreResource */

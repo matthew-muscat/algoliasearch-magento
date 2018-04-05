@@ -17,7 +17,7 @@ class Algolia_Algoliasearch_Helper_Entity_Producthelper extends Algolia_Algolias
         'price_type', // Needed for bundle prices
     );
 
-    private $excludedAttrsFromBundledProducts = array(
+    protected $excludedAttrsFromBundledProducts = array(
         'news_from_date',
         'news_to_date',
         'special_price',
@@ -25,7 +25,7 @@ class Algolia_Algoliasearch_Helper_Entity_Producthelper extends Algolia_Algolias
         'special_to_date',
     );
 
-    private $noAttributes = array();
+    protected $noAttributes = array();
 
     protected function getIndexNameSuffix()
     {
@@ -1039,7 +1039,7 @@ class Algolia_Algoliasearch_Helper_Entity_Producthelper extends Algolia_Algolias
         return $shouldIndex;
     }
 
-    private function getVisibilityAttributeValues($storeId)
+    protected function getVisibilityAttributeValues($storeId)
     {
         $indexVisibility = $this->config->indexVisibility($storeId);
 
@@ -1056,12 +1056,12 @@ class Algolia_Algoliasearch_Helper_Entity_Producthelper extends Algolia_Algolias
         return $catalog_productVisibility->{$visibilityMethod}();
     }
 
-    private function explodeSynomyms($synonyms)
+    protected function explodeSynomyms($synonyms)
     {
         return array_map('trim', explode(',', $synonyms));
     }
 
-    private function setNoAttributes($attributes)
+    protected function setNoAttributes($attributes)
     {
         foreach ($attributes as $attribute) {
             if (isset($attribute['index_no_value']) && $attribute['index_no_value'] !== '1') {
@@ -1070,7 +1070,7 @@ class Algolia_Algoliasearch_Helper_Entity_Producthelper extends Algolia_Algolias
         }
     }
 
-    private function clearNoValues($customData, $rootLevel = true)
+    protected function clearNoValues($customData, $rootLevel = true)
     {
         foreach ($customData as $attribute => $value) {
             if (is_array($value) && $rootLevel && isset($this->noAttributes[$attribute])) {

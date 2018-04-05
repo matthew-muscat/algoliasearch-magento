@@ -250,7 +250,7 @@ class Algolia_Algoliasearch_Model_Observer
         $this->helper->moveProductsIndex($storeId);
     }
 
-    private function loadAlgoliasearchHandle(Varien_Event_Observer $observer)
+    protected function loadAlgoliasearchHandle(Varien_Event_Observer $observer)
     {
         if (!$this->config->isPopupEnabled() && !$this->config->isInstantEnabled()) {
             return;
@@ -259,7 +259,7 @@ class Algolia_Algoliasearch_Model_Observer
         $observer->getData('layout')->getUpdate()->addHandle('algolia_search_handle');
     }
 
-    private function loadSearchFormHandle(Varien_Event_Observer $observer)
+    protected function loadSearchFormHandle(Varien_Event_Observer $observer)
     {
         if (!$this->config->isDefaultSelector()) {
             return;
@@ -268,7 +268,7 @@ class Algolia_Algoliasearch_Model_Observer
         $observer->getData('layout')->getUpdate()->addHandle('algolia_search_handle_with_topsearch');
     }
 
-    private function loadInstantSearchHandle(Varien_Event_Observer $observer)
+    protected function loadInstantSearchHandle(Varien_Event_Observer $observer)
     {
         if (!$this->config->isInstantEnabled()) {
             return;
@@ -282,14 +282,14 @@ class Algolia_Algoliasearch_Model_Observer
         $observer->getData('layout')->getUpdate()->addHandle('algolia_search_handle_instantsearch');
     }
 
-    private function loadAutocompleteHandle(Varien_Event_Observer $observer)
+    protected function loadAutocompleteHandle(Varien_Event_Observer $observer)
     {
         if ($this->config->isPopupEnabled()) {
             $observer->getData('layout')->getUpdate()->addHandle('algolia_search_handle_autocomplete');
         }
     }
 
-    private function loadPreventBackendRenderingHandle(Varien_Event_Observer $observer)
+    protected function loadPreventBackendRenderingHandle(Varien_Event_Observer $observer)
     {
         if (!$this->config->preventBackendRendering()) {
             return;

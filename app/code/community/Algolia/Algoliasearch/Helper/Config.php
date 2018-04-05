@@ -684,7 +684,7 @@ class Algolia_Algoliasearch_Helper_Config extends Mage_Core_Helper_Abstract
         return Mage::getStoreConfig(self::PREVENT_BACKEND_RENDERING_DISPLAY_MODE, $storeId);
     }
 
-    private function getCustomRanking($configName, $storeId = null)
+    protected function getCustomRanking($configName, $storeId = null)
     {
         $attrs = unserialize(Mage::getStoreConfig($configName, $storeId));
 
@@ -701,7 +701,7 @@ class Algolia_Algoliasearch_Helper_Config extends Mage_Core_Helper_Abstract
         return array();
     }
 
-    private function addIndexableAttributes($attributes, $addedAttributes, $searchable = '1', $retrievable = '1', $indexNoValue = '1')
+    protected function addIndexableAttributes($attributes, $addedAttributes, $searchable = '1', $retrievable = '1', $indexNoValue = '1')
     {
         foreach ((array) $addedAttributes as $addedAttribute) {
             foreach ((array) $attributes as $attribute) {

@@ -5,16 +5,16 @@ use PHPUnit\Framework\TestCase;
 class ConfigTest extends TestCase
 {
     /** @var Algolia_Algoliasearch_Helper_Config */
-    private $config;
+    protected $config;
 
     /** @var Algolia_Algoliasearch_Model_Observer */
-    private $observer;
+    protected $observer;
 
     /** @var Algolia_Algoliasearch_Helper_Algoliahelper */
-    private $algoliaHelper;
+    protected $algoliaHelper;
 
     /** @var string */
-    private $indexPrefix;
+    protected $indexPrefix;
 
     public function setUp()
     {

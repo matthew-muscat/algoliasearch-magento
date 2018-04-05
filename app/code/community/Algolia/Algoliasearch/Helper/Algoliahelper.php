@@ -19,10 +19,10 @@ class Algolia_Algoliasearch_Helper_Algoliahelper extends Mage_Core_Helper_Abstra
     protected $potentiallyLongAttributes = array('description', 'short_description', 'meta_description', 'content');
 
     /** @var string */
-    private $lastUsedIndexName;
+    protected $lastUsedIndexName;
 
     /** @var int */
-    private $lastTaskId;
+    protected $lastTaskId;
 
     public function __construct()
     {
@@ -270,7 +270,7 @@ class Algolia_Algoliasearch_Helper_Algoliahelper extends Mage_Core_Helper_Abstra
         $this->client->initIndex($this->lastUsedIndexName)->waitTask($this->lastTaskId);
     }
 
-    private function prepareRecords(&$objects, $indexName)
+    protected function prepareRecords(&$objects, $indexName)
     {
         $currentCET = new DateTime('now', new DateTimeZone('Europe/Paris'));
         $currentCET = $currentCET->format('Y-m-d H:i:s');

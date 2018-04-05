@@ -692,7 +692,7 @@ class Algolia_Algoliasearch_Helper_Data extends Mage_Core_Helper_Abstract
                Mage::EDITION_COMMUNITY === Mage::getEdition() && version_compare(Mage::getVersion(), '1.9.3', '>=');
     }
 
-    private function setExtraSettings($storeId, $saveToTmpIndicesToo)
+    protected function setExtraSettings($storeId, $saveToTmpIndicesToo)
     {
         $sections = array(
             'products' => $this->product_helper->getIndexName($storeId),

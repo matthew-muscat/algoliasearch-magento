@@ -218,7 +218,7 @@ class Algolia_Algoliasearch_Helper_Entity_Categoryhelper extends Algolia_Algolia
         return self::$_rootCategoryId;
     }
 
-    private function getThumbnailUrl($category)
+    protected function getThumbnailUrl($category)
     {
         $url = false;
         if ($image = $category->getThumbnail()) {

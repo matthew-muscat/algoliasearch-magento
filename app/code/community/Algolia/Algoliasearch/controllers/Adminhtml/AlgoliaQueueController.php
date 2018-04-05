@@ -58,7 +58,7 @@ class Algolia_Algoliasearch_Adminhtml_AlgoliaQueueController extends Mage_Adminh
         $this->sendResponse($status);
     }
 
-    private function sendResponse($data)
+    protected function sendResponse($data)
     {
         $this->getResponse()->setHeader('Content-Type', 'application/json');
         $this->getResponse()->setBody(json_encode($data));

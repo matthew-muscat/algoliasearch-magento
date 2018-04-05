@@ -66,7 +66,7 @@ class Algolia_Algoliasearch_Model_Resource_Fulltext extends Mage_CatalogSearch_M
         return $this;
     }
 
-    private function reindex($storeId, $productIds)
+    protected function reindex($storeId, $productIds)
     {
         if ($this->config->isEnabledBackend($storeId) === false) {
             return parent::rebuildIndex($storeId, $productIds);
@@ -75,7 +75,7 @@ class Algolia_Algoliasearch_Model_Resource_Fulltext extends Mage_CatalogSearch_M
         return $this->reindexAlgolia($storeId, $productIds);
     }
 
-    private function reindexAlgolia($storeId, $productIds)
+    protected function reindexAlgolia($storeId, $productIds)
     {
         if (!$this->config->getApplicationID($storeId) || !$this->config->getAPIKey($storeId) || !$this->config->getSearchOnlyAPIKey($storeId)) {
             /** @var Mage_Adminhtml_Model_Session $session */

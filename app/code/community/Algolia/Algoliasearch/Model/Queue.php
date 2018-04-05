@@ -19,7 +19,7 @@ class Algolia_Algoliasearch_Model_Queue
 
     protected $maxSingleJobDataSize;
 
-    private $staticJobMethods = array(
+    protected $staticJobMethods = array(
         'saveSettings',
         'moveProductsTmpIndex',
         'deleteProductsStoreIndices',
@@ -28,9 +28,9 @@ class Algolia_Algoliasearch_Model_Queue
         'moveStoreSuggestionIndex',
     );
 
-    private $noOfFailedJobs = 0;
+    protected $noOfFailedJobs = 0;
 
-    private $logRecord = array();
+    protected $logRecord = array();
 
     public function __construct()
     {
@@ -148,7 +148,7 @@ class Algolia_Algoliasearch_Model_Queue
         }
     }
 
-    private function getJobs($maxJobs, $pid)
+    protected function getJobs($maxJobs, $pid)
     {
         // Clear jobs with crossed max retries count
         $retryLimit = $this->config->getRetryLimit();
@@ -235,7 +235,7 @@ class Algolia_Algoliasearch_Model_Queue
         return $jobs;
     }
 
-    private function prepareJobs($jobs)
+    protected function prepareJobs($jobs)
     {
         foreach ($jobs as &$job) {
             $job['data'] = json_decode($job['data'], true);
@@ -293,7 +293,7 @@ class Algolia_Algoliasearch_Model_Queue
         return $jobs;
     }
 
-    private function sortJobs($oldJobs)
+    protected function sortJobs($oldJobs)
     {
         $sortedJobs = array();
 
@@ -319,7 +319,7 @@ class Algolia_Algoliasearch_Model_Queue
         return $sortedJobs;
     }
 
-    private function stackSortedJobs($sortedJobs, $tempSortableJobs, $job = null)
+    protected function stackSortedJobs($sortedJobs, $tempSortableJobs, $job = null)
     {
         if (!empty($tempSortableJobs)) {
             $tempSortableJobs = $this->arrayMultisort($tempSortableJobs, 'class', SORT_ASC, 'method', SORT_ASC, 'store_id', SORT_ASC, 'job_id', SORT_ASC);
@@ -334,7 +334,7 @@ class Algolia_Algoliasearch_Model_Queue
         return $sortedJobs;
     }
 
-    private function mergeable($j1, $j2)
+    protected function mergeable($j1, $j2)
     {
         if ($j1['class'] !== $j2['class']) {
             return false;
@@ -367,7 +367,7 @@ class Algolia_Algoliasearch_Model_Queue
         return true;
     }
 
-    private function arrayMultisort()
+    protected function arrayMultisort()
     {
         $args = func_get_args();
 
@@ -392,7 +392,7 @@ class Algolia_Algoliasearch_Model_Queue
         return array_pop($args);
     }
 
-    private function maxValueInArray($array, $keyToSearch)
+    protected function maxValueInArray($array, $keyToSearch)
     {
         $currentMax = null;
 
@@ -407,7 +407,7 @@ class Algolia_Algoliasearch_Model_Queue
         return $currentMax;
     }
 
-    private function clearOldLogRecords()
+    protected function clearOldLogRecords()
     {
         $idsToDelete = $this->db->query("SELECT id FROM {$this->logTable} ORDER BY started DESC, id DESC LIMIT 25000, ".PHP_INT_MAX)
                         ->fetchAll(\PDO::FETCH_COLUMN, 0);

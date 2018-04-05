@@ -3,10 +3,10 @@
 class QueueTest extends AbstractTestCase
 {
     /** @var Varien_Db_Adapter_Interface */
-    private $readConnection;
+    protected $readConnection;
 
     /** @var Varien_Db_Adapter_Interface */
-    private $writeConnection;
+    protected $writeConnection;
 
     public function setUp()
     {
